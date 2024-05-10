@@ -19,8 +19,7 @@ class KittensController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end 
-end
+  end
 
 def show
   @kitten = Kitten.find(params[:id])
