@@ -1,0 +1,4 @@
+<h2>edit your cat</h2>
+<%= render "kittens/form" %>
+
+<div><%= button_to "delete", kitten_path(@kitten), method: :delete, data: {confirm: "are you sure you want to delete this event?" }%> </div>

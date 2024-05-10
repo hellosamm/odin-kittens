@@ -1,2 +1,6 @@
 <h2>a list of all cats</h2>
 
+
+<% @kittens.each do |kitten| %>
+<%= link_to kitten.name, kitten_path(kitten)%> <br>
+<% end %>
