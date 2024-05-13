@@ -1,6 +1,11 @@
 class KittensController < ApplicationController
   def index
     @kittens = Kitten.all
+
+    respond_to do |format|
+      format.html 
+      format.json {render json: @kittens}
+    end
   end
   
   def new
@@ -21,22 +26,27 @@ class KittensController < ApplicationController
     end
   end
 
-def show
-  @kitten = Kitten.find(params[:id])
-end
+  def show
+    @kitten = Kitten.find(params[:id])
 
-def update
-  @kitten = Kitten.find(params[:id])
-
-  if @kitten.update(kitten_params)
-    flash[:notice] = "kitten was updated successfully"
-    redirect_to @kitten
-  else
-    render "edit"
+    respond_to do |format|
+      format.html 
+      format.json {render json: @kittens}
+    end
   end
-end 
-# shows exact same code for updating a form
-# https://stackoverflow.com/questions/42844615/rails-update-method-not-saving-form-data
+
+  def update
+    @kitten = Kitten.find(params[:id])
+
+    if @kitten.update(kitten_params)
+      flash[:notice] = "kitten was updated successfully"
+      redirect_to @kitten
+    else
+      render "edit"
+    end 
+  end 
+  # shows exact same code for updating a form
+  # https://stackoverflow.com/questions/42844615/rails-update-method-not-saving-form-data
 
 
 def destroy
@@ -59,4 +69,6 @@ private
 
 def kitten_params
   params.require(:kitten).permit(:name, :age, :cuteness, :softness)
+end
+
 end
